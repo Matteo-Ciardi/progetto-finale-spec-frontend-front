@@ -1,3 +1,40 @@
+.game-card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
 .game-card {
-    margin-bottom: 20px;
+    background-color: #1e293b;
+    color: #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+
+    flex: 1 1 220px;
+    max-width: 220px;
+    height: 120px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.game-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(100, 150, 200, 0.3);
+}
+
+.game-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.game-category {
+    font-size: 0.85rem;
+    color: #94a3b8;
 }
