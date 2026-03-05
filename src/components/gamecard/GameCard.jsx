@@ -1,10 +1,8 @@
-import { useContext } from 'react';
-import { GlobalContext } from '../../context/GlobalContext'
+
 
 import './gamecard.css'
 
-export default function GameCard() {
-    const { games } = useContext(GlobalContext);
+export default function GameCard({ games }) {
     return (
         <div className='game-card-container'>
             {games.map(game => (
