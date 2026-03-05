@@ -13,7 +13,7 @@ export default function Home() {
         setQuery(value)
     }
 
-    const filteredGames = games.filter(game => 
+    const filteredGames = games.filter(game =>
         game.title.toLowerCase().includes(query.toLowerCase())
     )
 
@@ -27,6 +27,57 @@ export default function Home() {
                         value={query}
                         onChange={(e) => handleSearch(e.target.value)}
                     />
+                    <div className='checkboxes'>
+                        <label for='category' className='cb-label'>
+                            <input
+                                type='checkbox'
+                                id='category'
+                            />
+                            RPG
+                        </label>
+                        <label for='category' className='cb-label'>
+                            <input
+                                type='checkbox'
+                                id='category'
+                            />
+                            Action RPG
+                        </label>
+                        <label for='category' className='cb-label'>
+                            <input
+                                type='checkbox'
+                                id='category'
+                            />
+                            Metroidvania
+                        </label>
+                        <label for='category' className='cb-label'>
+                            <input
+                                type='checkbox'
+                                id='category'
+                            />
+                            Management Simulation
+                        </label>
+                        <label for='category' className='cb-label'>
+                            <input
+                                type='checkbox'
+                                id='category'
+                            />
+                            Farming Simulation
+                        </label>
+                        <label for='category' className='cb-label'>
+                            <input
+                                type='checkbox'
+                                id='category'
+                            />
+                            Roguelike
+                        </label>
+                        <label for='category' className='cb-label'>
+                            <input
+                                type='checkbox'
+                                id='category'
+                            />
+                            CRPG
+                        </label>
+                    </div>
                 </section>
                 <section>
                     <GameCard games={filteredGames} />

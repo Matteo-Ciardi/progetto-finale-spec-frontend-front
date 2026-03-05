@@ -1,3 +1,15 @@
 .home-container {
     display: flex;
 }
+
+.filters {
+    margin-right: 30px;
+}
+
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
