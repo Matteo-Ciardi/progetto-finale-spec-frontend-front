@@ -1,7 +1,16 @@
+import { NavLink } from 'react-router-dom'
 import './navbar.css'
 
 export default function Navbar() {
     return (
-        <h3>NAVBAR</h3>
+        <nav>
+            <div>
+                <img src='src/assets/images/gamecompare-logo.png' />
+            </div>
+            <div>
+                <NavLink to="comparatore">COMPARATORE</NavLink>
+                <NavLink to="preferiti">PREFERITI</NavLink>
+            </div>
+        </nav>
     )
 }
