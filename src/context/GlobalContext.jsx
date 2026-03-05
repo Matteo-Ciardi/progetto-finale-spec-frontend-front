@@ -1,11 +1,11 @@
-import { createContext } from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const GlobalContext = createContext()
 
 export default function GlobalProvider({ children }) {
     const [games, setGames] = useState([]);
 
-    useEffetc(() => {
+    useEffect(() => {
         const fetchGames = async () => {
             try {
                 const res = await fetch('http://localhost:3001/games');

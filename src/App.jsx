@@ -6,19 +6,22 @@ import Comparator from './pages/comparator/Comparator'
 import Favorites from './pages/favorites/Favorites'
 
 import './App.css'
+import GlobalProvider from './context/GlobalContext'
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route index element={<Home />} />
-            <Route path='comparatore' element={<Comparator />} />
-            <Route path='preferiti' element={<Favorites />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <GlobalProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route index element={<Home />} />
+              <Route path='comparatore' element={<Comparator />} />
+              <Route path='preferiti' element={<Favorites />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </GlobalProvider>
     </>
   )
 }
