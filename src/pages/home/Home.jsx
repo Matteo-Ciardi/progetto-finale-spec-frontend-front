@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useMemo } from 'react'
 import { GlobalContext } from '../../context/GlobalContext'
 
 import GameCard from '../../components/gamecard/GameCard'
@@ -13,9 +13,11 @@ export default function Home() {
         setQuery(value)
     }
 
-    const filteredGames = games.filter(game =>
-        game.title.toLowerCase().includes(query.toLowerCase())
-    )
+    const filteredGames = useMemo(() => {
+        return games.filter(game => 
+            game.title.toLowerCase().includes(query.toLowerCase())
+        )
+    }, [games, query])
 
     return (
         <>
@@ -28,49 +30,49 @@ export default function Home() {
                         onChange={(e) => handleSearch(e.target.value)}
                     />
                     <div className='checkboxes'>
-                        <label for='category' className='cb-label'>
+                        <label htmlFor='category' className='cb-label'>
                             <input
                                 type='checkbox'
                                 id='category'
                             />
                             RPG
                         </label>
-                        <label for='category' className='cb-label'>
+                        <label htmlFor='category' className='cb-label'>
                             <input
                                 type='checkbox'
                                 id='category'
                             />
                             Action RPG
                         </label>
-                        <label for='category' className='cb-label'>
+                        <label htmlFor='category' className='cb-label'>
                             <input
                                 type='checkbox'
                                 id='category'
                             />
                             Metroidvania
                         </label>
-                        <label for='category' className='cb-label'>
+                        <label htmlFor='category' className='cb-label'>
                             <input
                                 type='checkbox'
                                 id='category'
                             />
                             Management Simulation
                         </label>
-                        <label for='category' className='cb-label'>
+                        <label htmlFor='category' className='cb-label'>
                             <input
                                 type='checkbox'
                                 id='category'
                             />
                             Farming Simulation
                         </label>
-                        <label for='category' className='cb-label'>
+                        <label htmlFor='category' className='cb-label'>
                             <input
                                 type='checkbox'
                                 id='category'
                             />
                             Roguelike
                         </label>
-                        <label for='category' className='cb-label'>
+                        <label htmlFor='category' className='cb-label'>
                             <input
                                 type='checkbox'
                                 id='category'

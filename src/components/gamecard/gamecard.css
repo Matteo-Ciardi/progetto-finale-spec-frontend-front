@@ -18,6 +18,12 @@
     height: 120px;
 
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-container {
+    display: flex;
     flex-direction: column;
     justify-content: center;
 }
@@ -31,9 +37,14 @@
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 5px;
+    margin-right: 20px;
 }
 
 .game-category {
     font-size: 0.85rem;
     color: #94a3b8;
+}
+
+.fav-icon {
+    font-size: 1.5rem;
 }
