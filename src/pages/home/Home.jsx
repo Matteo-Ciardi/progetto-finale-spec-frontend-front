@@ -10,6 +10,7 @@ export default function Home() {
     const { games } = useContext(GlobalContext)
     const [query, setQuery] = useState('')
     const [categoryFilter, setCategoryFilter] = useState('all');
+    const [sort, setSort] = useState('titleAsc')
 
     const handleSearch = (value) => {
         setQuery(value)
@@ -19,8 +20,12 @@ export default function Home() {
         setCategoryFilter(category)
     }
 
+    const handleSort = (sort) => {
+        setSort(sort)
+    }
+
     const filteredGames = useMemo(() => {
-        return games.filter(game => {
+        const result = [...games].filter(game => {
             const matchTitle = game.title
                 .toLowerCase()
                 .includes(query.toLowerCase())
@@ -30,7 +35,34 @@ export default function Home() {
 
             return matchTitle && matchCategory
         })
-    }, [games, query, categoryFilter])
+
+        if (sort === 'categoryAsc') {
+            result.sort((a, b) => {
+               return a.category.localeCompare(b.category)
+            })
+        }
+
+        if (sort === 'categoryDesc') {
+            result.sort((a, b) => {
+               return b.category.localeCompare(a.category)
+            })
+        }
+
+        if (sort === 'titleAsc') {
+            result.sort((a, b) => {
+               return a.title.localeCompare(b.title)
+            })
+        }
+
+        if (sort === 'titleDesc') {
+            result.sort((a, b) => {
+               return b.title.localeCompare(a.title)
+            })
+        }
+
+        return result
+
+    }, [games, query, categoryFilter, sort])
 
     return (
         <>
@@ -90,7 +122,37 @@ export default function Home() {
                     </div>
                 </section>
                 <section>
-                    <GameCard games={filteredGames} />
+                    <label className='orderby-label'>
+                        Ordina per
+                        <select
+                            onChange={(e) => handleSort(e.target.value)}
+                            className='order-by'
+                        >
+                            <option
+                                value='categoryAsc'
+                            >
+                                Categoria A-Z
+                            </option>
+                            <option
+                                value='categoryDesc'
+                            >
+                                Categoria Z-A
+                            </option>
+                            <option
+                                value='titleAsc'
+                            >
+                                Titolo A-Z
+                            </option>
+                            <option
+                                value='titleDesc'
+                            >
+                                Titolo Z-A
+                            </option>
+                        </select>
+                    </label>
+                    <div className='game-card-container'>
+                        <GameCard games={filteredGames} />
+                    </div>
                 </section>
             </div>
         </>

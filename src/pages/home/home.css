@@ -2,6 +2,19 @@
     display: flex;
 }
 
+.game-card-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.order-by {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
 .filters {
     margin-right: 30px;
     border-right: 1px solid rgba(255, 255, 255, 0.282);

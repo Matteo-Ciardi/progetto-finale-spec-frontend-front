@@ -4,7 +4,7 @@ import './gamecard.css'
 
 export default function GameCard({ games }) {
     return (
-        <div className='game-card-container'>
+        <>
             {games.map(game => (
                 <div className='game-card' key={game.id}>
                     <div className="text-container">
@@ -16,6 +16,6 @@ export default function GameCard({ games }) {
                     </div>
                 </div>
             ))}
-        </div>
+        </>
     )
 }
