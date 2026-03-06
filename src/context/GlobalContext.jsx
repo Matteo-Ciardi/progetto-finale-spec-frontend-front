@@ -4,6 +4,15 @@ export const GlobalContext = createContext()
 
 export default function GlobalProvider({ children }) {
     const [games, setGames] = useState([]);
+    const [favorites, setFavorites] = useState([]);
+
+    const addFavorite = (game) => {
+        setFavorites(prev => [...prev, game]);
+    }
+
+    const removeFavorite = (id) => {
+        setFavorites(prev => prev.filter(g => g.id !== id))
+    }
 
     useEffect(() => {
         const fetchGames = async () => {
@@ -22,7 +31,12 @@ export default function GlobalProvider({ children }) {
     return (
         <GlobalContext.Provider
             value={
-                { games }
+                {
+                    games,
+                    favorites,
+                    addFavorite,
+                    removeFavorite
+                }
             }>
             {children}
         </GlobalContext.Provider>

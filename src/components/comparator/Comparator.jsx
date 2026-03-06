@@ -53,7 +53,7 @@ export default function Comparator({ games, availableGames }) {
                                 ? 'green'
                                 : priceResult === 'right'
                                     ? 'red'
-                                    : 'black'
+                                    : 'white'
                     }}
                 >
                     Prezzo: €{games[0].price}
@@ -66,7 +66,7 @@ export default function Comparator({ games, availableGames }) {
                                 ? 'green'
                                 : ratingResult === 'right'
                                     ? 'red'
-                                    : 'black'
+                                    : 'white'
                     }}
                 >
                     Rating: {games[0].rating}
@@ -88,7 +88,7 @@ export default function Comparator({ games, availableGames }) {
                                         ? 'green'
                                         : priceResult === 'left'
                                             ? 'red'
-                                            : 'black'
+                                            : 'white'
                             }}
                         >
                             Prezzo: €{rightGame.price}
@@ -101,7 +101,7 @@ export default function Comparator({ games, availableGames }) {
                                         ? 'green'
                                         : ratingResult === 'left'
                                             ? 'red'
-                                            : 'black'
+                                            : 'white'
                             }}
                         >
                             Rating: {rightGame.rating}
