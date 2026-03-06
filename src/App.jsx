@@ -7,6 +7,7 @@ import Favorites from './pages/favorites/Favorites'
 
 import './App.css'
 import GlobalProvider from './context/GlobalContext'
+import GameDetail from './pages/gamedetail/GameDetail'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path='comparatore' element={<Comparator />} />
               <Route path='preferiti' element={<Favorites />} />
+              <Route path='dettagli' element={<GameDetail />} />
             </Route>
           </Routes>
         </BrowserRouter>
