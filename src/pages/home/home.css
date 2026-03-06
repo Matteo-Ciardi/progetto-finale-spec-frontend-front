@@ -4,12 +4,38 @@
 
 .filters {
     margin-right: 30px;
+    border-right: 1px solid rgba(255, 255, 255, 0.282);
+    padding-right: 50px;
+    padding-top: 20px;
 }
 
-.checkboxes {
+.searchbar {
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    padding: 10px 15px;
+}
+
+.cat-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reset-button {
+    background-color: transparent;
+    color: white;
+    border-color: transparent;
+    font-size: 1rem;
+}
+
+.cat-buttons {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    font-size: 0.8rem;
     margin-top: 20px;
+}
+
+.cat-button {
+    font-size: 1rem;
+    padding: 5px 10px;
 }

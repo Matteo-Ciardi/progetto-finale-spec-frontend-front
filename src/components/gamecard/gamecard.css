@@ -1,6 +1,6 @@
 .game-card-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 15px;
 }
@@ -13,8 +13,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
 
-    flex: 1 1 220px;
-    max-width: 220px;
+    width: 250px;
     height: 120px;
 
     display: flex;
