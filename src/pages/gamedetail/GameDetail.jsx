@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 
+import Comparator from '../../components/comparator/Comparator';
+
 import './gamedetail.css'
 
 export default function GameDetail() {
@@ -45,6 +47,7 @@ export default function GameDetail() {
                     COMPARA
                 </button>
             </div>
+            <Comparator />
         </div>
     )
 }

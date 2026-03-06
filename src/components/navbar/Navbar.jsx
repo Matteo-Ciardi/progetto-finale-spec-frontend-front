@@ -11,7 +11,6 @@ export default function Navbar() {
                 </Link>
             </div>
             <div className='navigation-links'>
-                <NavLink to="comparatore" className='nav-link'>COMPARATORE</NavLink>
                 <NavLink to="preferiti" className='nav-link'>PREFERITI</NavLink>
             </div>
         </nav>
