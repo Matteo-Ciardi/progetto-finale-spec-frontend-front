@@ -14,11 +14,66 @@ h1 {
     color: #e2e8f0;
 }
 
-button {
-    cursor: pointer;
-}
-
 a {
     text-decoration: none;
     color: inherit;
 }
+
+button {
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #2563eb;
+    color: white;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+select {
+    font-family: inherit;
+    font-size: 14px;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+
+    background-color: white;
+    color: #111827;
+
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:hover {
+    border-color: #2563eb;
+}
+
+select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+option {
+    font-size: 14px;
+}
+
