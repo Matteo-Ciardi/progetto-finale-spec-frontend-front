@@ -1,5 +1,8 @@
 import { Link, NavLink } from 'react-router-dom'
+import { MdFavorite } from 'react-icons/md'
+
 import Logo from '../../assets/images/gamecompare-logo.png'
+
 import './navbar.css'
 
 export default function Navbar() {
@@ -11,7 +14,9 @@ export default function Navbar() {
                 </Link>
             </div>
             <div className='navigation-links'>
-                <NavLink to="preferiti" className='nav-link'>PREFERITI</NavLink>
+                <NavLink to="preferiti" className='nav-link'>
+                    <MdFavorite />
+                </NavLink>
             </div>
         </nav>
     )

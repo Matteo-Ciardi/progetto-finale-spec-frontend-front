@@ -24,6 +24,7 @@
     color: #cbd5e1;
     font-weight: 500;
     transition: color 0.2s;
+    font-size: 2rem;
 }
 
 .nav-link.active,
