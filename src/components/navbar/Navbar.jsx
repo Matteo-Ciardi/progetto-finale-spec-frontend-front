@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
+import Logo from '../../assets/images/gamecompare-logo.png'
 import './navbar.css'
 
 export default function Navbar() {
@@ -6,7 +7,7 @@ export default function Navbar() {
         <nav className='navbar'>
             <div>
                 <Link to='/'>
-                    <img src='src/assets/images/gamecompare-logo.png' className='logo' />
+                    <img src={Logo} className='logo' alt='logo'/>
                 </Link>
             </div>
             <div className='navigation-links'>

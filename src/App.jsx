@@ -19,7 +19,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path='comparatore' element={<Comparator />} />
               <Route path='preferiti' element={<Favorites />} />
-              <Route path='dettagli' element={<GameDetail />} />
+              <Route path='dettagli/:id' element={<GameDetail />} />
             </Route>
           </Routes>
         </BrowserRouter>

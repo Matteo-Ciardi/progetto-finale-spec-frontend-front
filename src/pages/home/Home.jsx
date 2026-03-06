@@ -127,6 +127,7 @@ export default function Home() {
                         <select
                             onChange={(e) => handleSort(e.target.value)}
                             className='order-by'
+                            defaultValue={'titleAsc'}
                         >
                             <option
                                 value='categoryAsc'

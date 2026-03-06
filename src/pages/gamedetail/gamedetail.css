@@ -1,0 +1,48 @@
+.gamedetail-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.gamedetail-left {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.gamedetail-left img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.gamedetail-left .description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.gamedetail-right {
+    flex: 1;
+    border-left: 1px solid #555;
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.gamedetail-right h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.gamedetail-right p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
