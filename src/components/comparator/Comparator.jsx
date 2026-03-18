@@ -1,141 +1,119 @@
-import { useState } from 'react';
-
-import './comparator.css'
+import { useState } from "react";
+import "./comparator.css";
 
 export default function Comparator({ games, availableGames }) {
-    if (games.length === 0) return null;
+  if (!games || games.length === 0) return null;
 
-    const [showList, setShowList] = useState(false);
-    const [rightGame, setRightGame] = useState(null);
+  const [selectedGames, setSelectedGames] = useState([games[0]]);
+  const [showList, setShowList] = useState(false);
 
-    const handleSelectGame = async (selectedId) => {
-        try {
-            const res = await fetch(`http://localhost:3001/games/${selectedId}`);
-            const data = await res.json();
-            setRightGame(data.game);
-            setShowList(false);
-        } catch (err) {
-            console.error(err);
-        }
+  const firstGame = games[0];
+
+  const handleSelectGame = async (selectedId) => {
+    if (selectedGames.length >= 4) return;
+
+    try {
+      const res = await fetch(`http://localhost:3001/games/${selectedId}`);
+      const data = await res.json();
+
+      setSelectedGames((prev) => [...prev, data.game]);
+      setShowList(false);
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    const compareValues = (leftValue, rightValue, type) => {
-        if (type === 'higherBetter')
-            return leftValue > rightValue ? 'left' : leftValue < rightValue ? 'right' : 'equal';
+  const removeGame = (id) => {
+    setSelectedGames((prev) => prev.filter((game) => game.id !== id));
+  };
 
-        if (type === 'lowerBetter')
-            return leftValue < rightValue ? 'left' : leftValue > rightValue ? 'right' : 'equal';
+  const priceResult = selectedGames.map((game) =>
+    game.price < firstGame.price
+      ? "better"
+      : game.price > firstGame.price
+        ? "worse"
+        : "equal",
+  );
 
-        return 'equal';
-    }
+  const ratingResult = selectedGames.map((game) =>
+    game.rating > firstGame.rating
+      ? "better"
+      : game.rating < firstGame.rating
+        ? "worse"
+        : "equal",
+  );
 
-    const priceResult = rightGame
-        ? compareValues(games[0].price, rightGame.price, 'lowerBetter')
-        : null;
+  return (
+    <div className="comparator-container">
+      {selectedGames.map((game, i) => (
+        <div key={game.id} className="comparator-card">
+          <h3>{game.title}</h3>
+          {i !== 0 && ( 
+            <button
+              className="remove-game-btn"
+              onClick={() => removeGame(game.id)}
+            >
+              ×
+            </button>
+          )}
+          <img src={game.image} alt={game.title} />
 
-    const ratingResult = rightGame
-        ? compareValues(games[0].rating, rightGame.rating, 'higherBetter')
-        : null;
+          <p>{game.category}</p>
 
-    return (
-        <div className="comparator-container">
+          <p
+            style={{
+              color:
+                priceResult[i] === "better"
+                  ? "green"
+                  : priceResult[i] === "worse"
+                    ? "red"
+                    : "white",
+            }}
+          >
+            Prezzo: €{game.price}
+          </p>
 
-            <div className="comparator-left">
-                <h3>{games[0].title}</h3>
-                <img src={games[0].image} alt={games[0].title} />
-
-                <p>{games[0].category}</p>
-
-                <p
-                    style={{
-                        color:
-                            priceResult === 'left'
-                                ? 'green'
-                                : priceResult === 'right'
-                                    ? 'red'
-                                    : 'white'
-                    }}
-                >
-                    Prezzo: €{games[0].price}
-                </p>
-
-                <p
-                    style={{
-                        color:
-                            ratingResult === 'left'
-                                ? 'green'
-                                : ratingResult === 'right'
-                                    ? 'red'
-                                    : 'white'
-                    }}
-                >
-                    Rating: {games[0].rating}
-                </p>
-            </div>
-
-            <div className="comparator-right">
-                {rightGame ? (
-                    <>
-                        <h3>{rightGame.title}</h3>
-                        <img src={rightGame.image} alt={rightGame.title} />
-
-                        <p>{rightGame.category}</p>
-
-                        <p
-                            style={{
-                                color:
-                                    priceResult === 'right'
-                                        ? 'green'
-                                        : priceResult === 'left'
-                                            ? 'red'
-                                            : 'white'
-                            }}
-                        >
-                            Prezzo: €{rightGame.price}
-                        </p>
-
-                        <p
-                            style={{
-                                color:
-                                    ratingResult === 'right'
-                                        ? 'green'
-                                        : ratingResult === 'left'
-                                            ? 'red'
-                                            : 'white'
-                            }}
-                        >
-                            Rating: {rightGame.rating}
-                        </p>    
-                    </>
-                ) : (
-                    <>
-                        <button
-                            className="add-game-btn"
-                            onClick={() => setShowList(!showList)}
-                        >
-                            +
-                        </button>
-
-                        {showList && (
-                            <div className="game-selection-list">
-                                {availableGames
-                                    .filter(g => g.id !== games[0].id)
-                                    .map(g => (
-                                        <div
-                                            key={g.id}
-                                            className="game-option"
-                                            onClick={() => handleSelectGame(g.id)}
-                                        >
-                                            {g.title}
-                                        </div>
-                                    ))}
-                            </div>
-                        )}
-                    </>
-                )}
-            </div>
-
-
+          <p
+            style={{
+              color:
+                ratingResult[i] === "better"
+                  ? "green"
+                  : ratingResult[i] === "worse"
+                    ? "red"
+                    : "white",
+            }}
+          >
+            Rating: {game.rating}
+          </p>
         </div>
-    )
+      ))}
+
+      {selectedGames.length < 4 && (
+        <div className="comparator-add">
+          <button
+            className="add-game-btn"
+            onClick={() => setShowList(!showList)}
+          >
+            +
+          </button>
+
+          {showList && (
+            <div className="game-selection-list">
+              {availableGames
+                .filter((g) => !selectedGames.some((sg) => sg.id === g.id))
+                .map((g) => (
+                  <div
+                    key={g.id}
+                    className="game-option"
+                    onClick={() => handleSelectGame(g.id)}
+                  >
+                    {g.title}
+                  </div>
+                ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }
