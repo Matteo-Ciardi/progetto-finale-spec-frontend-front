@@ -1,15 +1,29 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 
 export default function useFilters(games) {
-    const [query, setQuery] = useState('')
+    const [query, setQuery] = useState('');
+    const [debouncedQuery, setDebouncedQuery] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('all');
     const [sort, setSort] = useState('titleAsc')
+
+    const debounce = useCallback((value, delay) => {
+         const handler = setTimeout(() => {
+            setDebouncedQuery(value);
+         }, delay)
+
+         return () => clearTimeout(handler)
+    })
+
+    useEffect(() => {
+        const clean = debounce(query, 500)
+        return clean
+    }, [query, debounce])
 
      const filteredGames = useMemo(() => {
             const result = [...games].filter(game => {
                 const matchTitle = game.title
                     .toLowerCase()
-                    .includes(query.toLowerCase())
+                    .includes(debouncedQuery.toLowerCase())
     
                 const matchCategory =
                     categoryFilter === 'all' || game.category === categoryFilter
@@ -43,7 +57,7 @@ export default function useFilters(games) {
     
             return result
     
-        }, [games, query, categoryFilter, sort])
+        }, [games, debouncedQuery, categoryFilter, sort])
 
         return {
             query,
