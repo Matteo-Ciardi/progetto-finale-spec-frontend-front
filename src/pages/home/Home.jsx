@@ -19,18 +19,6 @@ export default function Home() {
         filteredGames
     } = useFilters(games)
 
-    const handleSearch = (value) => {
-        setQuery(value)
-    }
-
-    const handleCategory = (category) => {
-        setCategoryFilter(category)
-    }
-
-    const handleSort = (sort) => {
-        setSort(sort)
-    }
-
     return (
         <>
             <div className='home-container'>

@@ -41,7 +41,7 @@ export default function GameCard({ games }) {
                                 )}
                             </div>
                             <Link className='details-button' to={`/dettagli/${game.id}`} key={game.id}>
-                                <span >Dettagli</span>
+                                <span>Dettagli</span>
                             </Link>
                         </div>
                     </div>
