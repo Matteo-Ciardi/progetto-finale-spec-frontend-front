@@ -4,7 +4,10 @@ export const GlobalContext = createContext()
 
 export default function GlobalProvider({ children }) {
     const [games, setGames] = useState([]);
-    const [favorites, setFavorites] = useState([]);
+    const [favorites, setFavorites] = useState(() => {
+        const stored = localStorage.getItem('favorites');
+        return stored ? JSON.parse(stored) : [];
+    });
 
     const addFavorite = (game) => {
         setFavorites(prev => [...prev, game]);
@@ -13,6 +16,10 @@ export default function GlobalProvider({ children }) {
     const removeFavorite = (id) => {
         setFavorites(prev => prev.filter(g => g.id !== id))
     }
+
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites])
 
     useEffect(() => {
         const fetchGames = async () => {

@@ -19,7 +19,7 @@ export default function useFilters(games) {
         return clean
     }, [query, debounce])
 
-     const filteredGames = useMemo(() => {
+    const filteredGames = useMemo(() => {
             const result = [...games].filter(game => {
                 const matchTitle = game.title
                     .toLowerCase()
